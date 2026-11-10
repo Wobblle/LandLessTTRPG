@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Landless — Dock Slice</title>
+<style>
+  :root {
+    --bg: #231c14;
+    --bg-2: #1a140e;
+    --ink: #f3ead8;
+    --muted: #b7aa94;
+    --amber: #ffb000;
+    --green: #c6ff4a;
+    --paper: #e4dccb;
+    --paper-ink: #16130e;
+    --neg: #ff4b2e;
+    --line: #0c0b09;
+    --shadow: 8px 8px 0 var(--amber), 16px 16px 0 #000;
+    --shadow-paper: 8px 8px 0 #000, 16px 16px 0 #6a4a12;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background:
+      repeating-linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.18) 0 1px,
+        transparent 1px 4px
+      ),
+      var(--bg);
+    color: var(--ink);
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 16px;
+    line-height: 1.45;
+  }
+  .wrap {
+    width: min(960px, calc(100% - 48px));
+    margin: 0 auto;
+    padding: 22px 0 80px;
+  }
+  section, header, article { scroll-margin-top: 76px; }
+  a { color: var(--green); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  h1, h2, h3, .display {
+    font-family: "Arial Black", Impact, sans-serif;
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    line-height: 0.9;
+    margin: 0;
+    text-transform: uppercase;
+  }
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 4;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 10px 12px;
+    margin-bottom: 22px;
+    background: var(--bg-2);
+    border: 3px solid var(--amber);
+    box-shadow: var(--shadow);
+  }
+  .nav-links, .nav-tools { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  .nav a {
+    color: var(--amber);
+    font-family: "Arial Black", Impact, sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    padding: 6px 8px;
+    border: 2px solid transparent;
+  }
+  .nav a:hover { border-color: var(--green); text-decoration: none; color: var(--green); }
+  header.mast {
+    background: var(--bg-2);
+    color: var(--ink);
+    border: 4px solid var(--amber);
+    box-shadow: var(--shadow);
+    padding: 18px 18px 16px;
+    margin-bottom: 26px;
+    position: relative;
+  }
+  .kicker {
+    color: var(--green);
+    font-family: "Arial Black", Impact, sans-serif;
+    letter-spacing: 0.16em;
+    font-size: 12px;
+  }
+  header.mast h1 { font-size: clamp(52px, 12vw, 92px); color: var(--amber); }
+  .sub {
+    margin-top: 8px;
+    font-size: clamp(22px, 4vw, 34px);
+    color: var(--ink);
+  }
+  .mast p { margin: 12px 0 0; max-width: 62ch; color: var(--muted); }
+  .stamp {
+    display: inline-block;
+    margin-top: 14px;
+    padding: 6px 8px;
+    background: var(--green);
+    color: #111;
+    font-family: "Arial Black", Impact, sans-serif;
+    letter-spacing: 0.08em;
+    font-size: 13px;
+    box-shadow: 4px 4px 0 #000;
+  }
+  .slab {
+    background: var(--bg-2);
+    border: 4px solid var(--line);
+    box-shadow: var(--shadow);
+    padding: 16px;
+    margin: 0 0 28px;
+  }
+  .slab.paper {
+    background: var(--paper);
+    color: var(--paper-ink);
+    box-shadow: var(--shadow-paper);
+  }
+  .slab h2 { font-size: clamp(28px, 6vw, 42px); margin-bottom: 8px; }
+  .paper h2 { color: var(--paper-ink); }
+  .terminal h2 { color: var(--green); }
+  .amber-head { color: var(--amber); }
+  .label {
+    font-family: "Arial Black", Impact, sans-serif;
+    letter-spacing: 0.14em;
+    font-size: 12px;
+    color: var(--amber);
+  }
+  .paper .label { color: #6a4a12; }
+  .row { display: flex; flex-wrap: wrap; gap: 10px; }
+  .stat {
+    flex: 1 1 92px;
+    background: #0c0b09;
+    color: var(--ink);
+    border: 3px solid var(--green);
+    box-shadow: 5px 5px 0 #000;
+    padding: 8px;
+  }
+  .stat span {
+    display: block;
+    font-family: "Arial Black", Impact, sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: var(--green);
+  }
+  .stat input {
+    width: 100%;
+    margin-top: 4px;
+    background: transparent;
+    color: var(--amber);
+    border: 0;
+    font-family: "Arial Black", Impact, sans-serif;
+    font-size: 28px;
+    line-height: 1;
+  }
+  .stat input:focus { outline: 2px solid var(--amber); }
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 26px;
+  }
+  @media (min-width: 800px) {
+    .grid.two { grid-template-columns: 1fr 1fr; }
+  }
+  .card {
+    background: var(--paper);
+    color: var(--paper-ink);
+    border: 4px solid #000;
+    box-shadow: var(--shadow-paper);
+    padding: 14px 14px 16px;
+    min-height: 100%;
+  }
+  .card .num {
+    font-family: "Arial Black", Impact, sans-serif;
+    color: var(--amber);
+    background: #000;
+    display: inline-block;
+    padding: 2px 6px;
+    letter-spacing: 0.08em;
+    box-shadow: 3px 3px 0 var(--green);
+  }
+  .card h3 { font-size: 30px; margin: 8px 0 4px; }
+  .tags { color: #5c5144; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; }
+  .hook {
+    margin: 8px 0;
+    padding-left: 10px;
+    border-left: 6px solid var(--amber);
+    font-style: italic;
+  }
+  .block {
+    display: grid;
+    grid-template-columns: 112px 1fr;
+    gap: 6px 10px;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 3px solid #000;
+  }
+  .block b {
+    font-family: "Arial Black", Impact, sans-serif;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+  }
+  .neg { color: var(--neg); }
+  .pos { color: #1d6b12; }
+  ul { margin: 8px 0 0; padding-left: 18px; }
+  li { margin: 4px 0; }
+  table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-top: 10px;
+    box-shadow: 6px 6px 0 #000;
+  }
+  th, td {
+    border: 3px solid #000;
+    padding: 8px;
+    vertical-align: top;
+    text-align: left;
+    background: #111;
+  }
+  th {
+    background: var(--amber);
+    color: #111;
+    font-family: "Arial Black", Impact, sans-serif;
+    letter-spacing: 0.06em;
+    font-size: 13px;
+  }
+  td strong { color: var(--green); }
+  .checks { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+  .checks label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #2a2116;
+    color: #ffb000;
+    border: 3px solid #ffb000;
+    padding: 8px 12px;
+    box-shadow: 4px 4px 0 #000;
+    font-family: "Arial Black", Impact, sans-serif;
+    font-size: 16px;
+    letter-spacing: 0.08em;
+  }
+  .checks input[type="checkbox"] {
+    width: 22px;
+    height: 22px;
+    margin: 0;
+    accent-color: #c6ff4a;
+    background: #f3ead8;
+  }
+  button {
+    appearance: none;
+    margin-top: 12px;
+    background: var(--amber);
+    color: #111;
+    border: 4px solid #000;
+    box-shadow: 8px 8px 0 #000;
+    font-family: "Arial Black", Impact, sans-serif;
+    font-size: 20px;
+    letter-spacing: 0.08em;
+    padding: 12px 16px;
+    cursor: pointer;
+    width: 100%;
+  }
+  button:active { transform: translate(4px, 4px); box-shadow: 4px 4px 0 #000; }
+  button:disabled { background: #5c5144; color: #111; cursor: default; transform: none; }
+  button.tool {
+    width: auto;
+    margin: 0;
+    padding: 8px 14px;
+    font-size: 16px;
+    background: var(--amber);
+    color: #14110c;
+    border: 3px solid #000;
+    box-shadow: 4px 4px 0 #000;
+  }
+  #roll-out {
+    min-width: 6.5rem;
+    padding: 8px 12px;
+    background: #14110c;
+    color: var(--green);
+    border: 3px solid var(--green);
+    font-family: "Arial Black", Impact, sans-serif;
+    font-size: 22px;
+    letter-spacing: 0.08em;
+    text-align: center;
+    box-shadow: 4px 4px 0 #000;
+  }
+  #bill-out {
+    margin-top: 12px;
+    padding: 10px;
+    background: #0c0b09;
+    border: 3px solid var(--green);
+    color: var(--green);
+    min-height: 1.2em;
+    box-shadow: 5px 5px 0 #000;
+  }
+  .fine { color: var(--muted); font-size: 14px; }
+  .paper .fine { color: #5c5144; }
+  .scroll-x { overflow-x: auto; }
+  @media (max-width: 560px) {
+    .wrap { width: min(960px, calc(100% - 28px)); }
+    .slab, header.mast, .card { box-shadow: 6px 6px 0 #000; }
+    header.mast { box-shadow: 6px 6px 0 var(--amber); }
+    .block { grid-template-columns: 1fr; gap: 2px 0; }
+    .nav a { padding: 8px 6px; }
+  }
+  @media print {
+    body { background: white; color: black; }
+    .nav { display: none; }
+    .slab, .card, header.mast { box-shadow: none; break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="nav">
+    <div class="nav-links">
+      <a href="#sit">01 SIT</a>
+      <a href="#pell">02 PELL</a>
+      <a href="#oracle">03 ORACLE</a>
+      <a href="#sky">04 SKY</a>
+      <a href="#cards">05 CARDS</a>
+      <a href="#bill">06 BILL</a>
+    </div>
+    <div class="nav-tools">
+      <button type="button" class="tool" data-die="6">D6</button>
+      <button type="button" class="tool" data-die="8">D8</button>
+      <button type="button" class="tool" data-die="10">D10</button>
+      <button type="button" class="tool" id="draw-card">CARD</button>
+      <output id="roll-out" aria-live="polite">READY</output>
+    </div>
+  </nav>
+
+  <header class="mast">
+    <div class="kicker">FIELD ISSUE · PORT DUNDY · IMPORT WING</div>
+    <h1>Landless</h1>
+    <div class="sub display">Dock slice</div>
+    <p>One Howling. One cutter. The back half of a Cycle. Roll the d6. Draw the deck. Write down what breaks. This sheet is house. It does not replace Draft 0.</p>
+    <div class="stamp">HOUSE · SESSION 1 · DRAFT 0 UNTOUCHED</div>
+  </header>
+
+  <section class="slab" id="sit">
+    <div class="label">01 · PROCEDURE</div>
+    <h2 class="amber-head">Sit down</h2>
+    <p>You need this sheet, one d6, a deck with the jokers out, and a pencil. Pell is already made. The morning is already gone.</p>
+    <ol>
+      <li>Start at Midday. Roll the sky.</li>
+      <li>You have six Action Turns before the cutter slips its bolts at the end of Deep Night.</li>
+      <li>Pick a card. Slot one talent onto block 4 or block 5. Roll the d6.</li>
+      <li>The other open block stays empty. Empty means the card's NEG, unless a talent is sitting in it.</li>
+      <li>A question the cards do not answer: draw one. Suit is the verdict. Value is the twist.</li>
+      <li>Eat, drink, or rest when you spend the turn to do it. At the end of Deep Night, run the bill.</li>
+    </ol>
+    <p class="fine">Draft 0 still owns the d6 block, the Cycle bill, and the deprivation bands. This sheet owns the prices, the six-turn day, the suit verdicts, and the damage sentence: a hit subtracts its DR from Toughness. Armor reduces that DR first, down to zero. There is no second damage die.</p>
+  </section>
+
+  <section class="slab terminal" id="pell">
+    <div class="label">02 · SURVIVOR</div>
+    <h2>Pell</h2>
+    <div class="label">MIDDAY NUMBERS</div>
+    <div class="row" style="margin:8px 0 14px">
+      <label class="stat">Toughness<span><input id="toughness" type="number" value="15"></span></label>
+      <label class="stat">Hunger<span><input id="hunger" type="number" value="45"></span></label>
+      <label class="stat">Thirst<span><input id="thirst" type="number" value="40"></span></label>
+      <label class="stat">Rest<span><input id="rest" type="number" value="55"></span></label>
+      <label class="stat">Sanity<span><input id="sanity" type="number" value="50"></span></label>
+      <label class="stat">Battery<span><input id="battery" type="number" value="2"></span></label>
+    </div>
+    <div>
+        <p>Howling. Otter-low, long in the hands, hide the color of wet rope. Ears fold flat in a bad wind.</p>
+        <p>Cast out of a skiff-pack for cutting a line they were told to hold. Clubs, ace through four. Howling Society −10. Survival +1. That part is Draft 0.</p>
+        <p>Hest, Timberite, counts a coin twice and speaks once. Hest wants the sealed meter under the import slab. Pay is a half-sleeve: a bunk and a week. The crate is fouled in the pilings. Onyx collectors are on the upper boardwalk. The sun is still up.</p>
+        <p class="fine">Feature points: 10, plus 2 from Sun-blind, all 12 spent. Closet: 50 spent. Both price lists are house, the seed of CC3 and CC5. Carry is 10.3 kg of a 20 kg cap. The cap will not be tested. Write that down if the kit still feels thin.</p>
+        <ul>
+          <li>Enhanced Hearing, 3. Talent: Heightened Alertness.</li>
+          <li>Climbing Claws, 3. Talent: Hold Fast. Bare claws are DR 1 if the knife is gone.</li>
+          <li>Aquatic Adaptation, 4. Talent: Low in the Water.</li>
+          <li>Reinforced Ankle, 2. Battery max 4. Spend 1 to ignore Sun-blind on this card.</li>
+          <li>Sun-blind, gains 2. On a SUN card, an unfilled open slot is the NEG.</li>
+        </ul>
+        <p>Skills, house, the +1 already inside Survival: Survival 3, Perception 3, Scavenge 2, Pilot 2, Melee 2, Talk 0, Engineering 0. Skill does not add to the d6 in this slice. It only names which talent is allowed to sit in an open slot.</p>
+        <p>Maneuvers from Draft 0, translated off the tick grid: Heightened Alertness, Power Strike. Ticks are not in this session. If Alertness is slotted in a fight, their hit is DR 1 after armor instead of the full pipe. If it is slotted on a sense card, you find the thing and you are not seen. Power Strike adds +2 DR to that one hit.</p>
+        <p class="fine">Standing, fixed so the deck stays free for the oracle. Onyx −5, house. Timberites 0. Rhombus 0. Stillous 0. Mirlyns and Breakers are hostile and not on this wing.</p>
+        <div class="label">KIT · 50 CP</div>
+        <ul>
+          <li>Satchel 8 · 8 slots</li>
+          <li>Hooked knife 10 · DR 2 · worn</li>
+          <li>Patch vest 8 · AV 1 torso · worn</li>
+          <li>Rations 4 · two · +20 Hunger each</li>
+          <li>Water 6 · three bulbs · +20 Thirst each</li>
+          <li>Line 4 · grease and rag 2</li>
+          <li>Pry bar 6 · Hold Fast may slot on Force</li>
+          <li>Dim lamp 2</li>
+        </ul>
+    </div>
+  </section>
+
+  <section class="slab" id="oracle">
+    <div class="label">03 · ORACLE</div>
+    <h2 class="amber-head">Ask. Draw once.</h2>
+    <p>Suit is the verdict. Value is the twist. Cold reading. One hook. Then you are back on the cards.</p>
+    <div class="scroll-x">
+    <table>
+      <thead>
+        <tr><th>Suit</th><th>Ace–4 · small</th><th>5–10 · turn</th><th>Jack–King · the dock</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>♥ YES</strong></td>
+          <td>The next latch is open. Warm wood. No cost.</td>
+          <td>You get it. Spend one ration or one bulb.</td>
+          <td>A Howling on the upper slab saw you. Help, or a debt. Pick one when you look up.</td>
+        </tr>
+        <tr>
+          <td><strong>♦ YES, BUT</strong></td>
+          <td>You have it. Onyx tally +1. Diesel on your hands.</td>
+          <td>Hest's price falls to a bunk and nothing else.</td>
+          <td>The meter is warm. Someone living wants it back tonight.</td>
+        </tr>
+        <tr>
+          <td><strong>♣ NO, BUT</strong></td>
+          <td>You fail. You do find one clean bulb.</td>
+          <td>A child names the true slip. Mark −5 Rest for the standing around.</td>
+          <td>Onyx walks past you. They take the person behind you. Sanity −2.</td>
+        </tr>
+        <tr>
+          <td><strong>♠ NO</strong></td>
+          <td>Wet hands. Nothing else.</td>
+          <td>The line coil is gone.</td>
+          <td>The water answers. Play Hazard. Already in it: −4 Toughness.</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="fine">Do not narrate past the line. If the draw names a living want, ask one more question later. It is not a Breaker unless you are already on Hazard and you still need a body. Even then, prefer a hand, a cable, a drowned tool.</p>
+  </section>
+
+  <section class="slab paper" id="sky">
+    <div class="label">04 · PHASE SKY · ACTION TURNS</div>
+    <h2>Six turns. Three skies.</h2>
+    <p>Roll 1d6 at the start of Midday, Evening, and Deep Night.</p>
+    <div class="block">
+      <b>1–2</b><span>Clear. Heat on wet plank. Midday stays SUN.</span>
+      <b>3–4</b><span>Harsh. Midday stays SUN. Later phases: black water, no new rule.</span>
+      <b>5–6</b><span>Squall. Salt wind, diesel, a distant klaxon. SUN cancels. Any NEG on Climb, Pilot, or Hazard also deals −2 Toughness.</span>
+    </div>
+    <p>SUN is Midday on an open boardwalk, and only while the sky is not a squall. Under the slab is shade. Evening and Deep Night are shade. Spend 1 Battery to ignore Sun-blind for the card you are on.</p>
+    <div class="label" style="margin-top:12px">ACTION TURNS</div>
+    <div class="checks" id="turns">
+      <label><input type="checkbox"> AT 1</label>
+      <label><input type="checkbox"> AT 2</label>
+      <label><input type="checkbox"> AT 3</label>
+      <label><input type="checkbox"> AT 4</label>
+      <label><input type="checkbox"> AT 5</label>
+      <label><input type="checkbox"> AT 6</label>
+    </div>
+    <div class="label" style="margin-top:12px">ONYX TALLY · A RUNNER AT 2</div>
+    <div class="checks">
+      <label><input type="checkbox"> Seen</label>
+      <label><input type="checkbox"> Runner</label>
+      <label><input type="checkbox"> Leave the wing</label>
+    </div>
+    <p class="fine">A meal, a bulb, or a nap is free of an Action Turn if you are already stopped. A nap is +5 Rest and you can be found. A short rest is +25 Rest and costs 4 of the 6 turns. A full rest needs a Phase and a door. Hest's cutter is not that door until the meter is in their hand.</p>
+  </section>
+
+  <section id="cards">
+    <div class="label">05 · IMPORT WING · EIGHT CARDS</div>
+    <h2 class="display" style="font-size: clamp(32px, 7vw, 48px); margin: 6px 0 16px; color: var(--amber);">The cards</h2>
+    <div class="grid two">
+
+      <article class="card">
+        <div class="num">01 · SEARCH</div>
+        <h3>Fouled slip</h3>
+        <div class="tags">Scavenge · Sun · 1 AT</div>
+        <p class="hook">Diesel film. Warm wood. A crate knocking the piling.</p>
+        <div class="block">
+          <b class="neg">1–3 NEG</b><span>The crate is not in this slip. The turn is gone. Onyx tally +1.</span>
+          <b>4 OPEN</b><span>Slot Alertness, or this is the NEG.</span>
+          <b>5 OPEN</b><span>Same slot rule. One talent only, on 4 or on 5.</span>
+          <b class="pos">6 POS</b><span>You find the crate, lashed and sealed, and a dry beam to it. You are not seen.</span>
+        </div>
+        <p>Alertness slotted: you hear the crate, and the watcher, first. You have it. Tally stays put.</p>
+      </article>
+
+      <article class="card">
+        <div class="num">02 · CLIMB</div>
+        <h3>Under the slab</h3>
+        <div class="tags">Climb · Shade · 1 AT</div>
+        <p class="hook">Kelp. Cold chain. The water close enough to taste.</p>
+        <div class="block">
+          <b class="neg">1–3 NEG</b><span>A rung goes. You are in. −5 Thirst. Play Hazard at once.</span>
+          <b>4 OPEN</b><span>Slot Hold Fast, or fall as the NEG.</span>
+          <b>5 OPEN</b><span>Unfilled. Falls through.</span>
+          <b class="pos">6 POS</b><span>You are on the beam, in shade, crate in reach. Sun-blind sleeps while you stay under.</span>
+        </div>
+        <p>Hold Fast slotted: you catch iron. The climb is done. No fall.</p>
+      </article>
+
+      <article class="card">
+        <div class="num">03 · FORCE</div>
+        <h3>Crate locks</h3>
+        <div class="tags">Force · Shade · 1 AT · pry bar</div>
+        <p class="hook">Wet rope. A lock older than the crate. Sweet oil.</p>
+        <div class="block">
+          <b class="neg">1–3 NEG</b><span>The lock holds. Noise. Onyx tally +1. −2 Toughness, knuckles.</span>
+          <b>4 OPEN</b><span>With the pry bar, Hold Fast may sit here.</span>
+          <b>5 OPEN</b><span>No bar, no slot. Engineering is 0.</span>
+          <b class="pos">6 POS</b><span>Clean open. The meter is in your hand. The rest of the crate is junk.</span>
+        </div>
+        <p>Hold Fast slotted: the seam gives. Meter in hand. Draw once. The draw is what else was in there. You may leave it.</p>
+      </article>
+
+      <article class="card">
+        <div class="num">04 · TALK</div>
+        <h3>Hest</h3>
+        <div class="tags">Talk · Sun · 1 AT</div>
+        <p class="hook">Bark creak. Cheap liquor. A sleeve counted, then counted again.</p>
+        <div class="block">
+          <b class="neg">1–3 NEG</b><span>Hest believes you are wasting the tide. The cutter now slips at the end of Evening. Pay, if you make it, is a bunk.</span>
+          <b>4 OPEN</b><span>Slot Alertness, or this is the NEG.</span>
+          <b>5 OPEN</b><span>Talk is 0. Nothing else may sit here.</span>
+          <b class="pos">6 POS</b><span>The deal stands. Half-sleeve on delivery. Hest names the slip.</span>
+        </div>
+        <p>Alertness slotted: you hear the second sale. Hest has already promised the meter. You may walk, or take it on the same clock.</p>
+      </article>
+
+      <article class="card">
+        <div class="num">05 · PILOT</div>
+        <h3>One slip over</h3>
+        <div class="tags">Pilot · Sun · Water · 1 AT</div>
+        <p class="hook">A two-stroke cough. Rope burn. The gap, wider from the seat.</p>
+        <div class="block">
+          <b class="neg">1–3 NEG</b><span>The skiff slams the piling. −3 Toughness. If the meter is in your hand, it goes in. Hazard to go after it, or it is gone.</span>
+          <b>4 OPEN</b><span>Slot Low in the Water, or take the NEG.</span>
+          <b>5 OPEN</b><span>Unfilled.</span>
+          <b class="pos">6 POS</b><span>You kiss the bolts clean. Hest looks at your hands.</span>
+        </div>
+        <p>Low in the Water slotted: you bounce and stay aboard. You arrive. Mark one extra Action Turn as spent.</p>
+      </article>
+
+      <article class="card">
+        <div class="num">06 · KNIFE</div>
+        <h3>Hooked knife</h3>
+        <div class="tags">Fight · 1 AT · DR 2 · sharp</div>
+        <p class="hook">Close boards. Someone's breath. The vest taking the first inch.</p>
+        <div class="block">
+          <b class="neg">1–3 NEG</b><span>Their pipe lands. Yours misses. Pipe is DR 3, vest brings it to 2.</span>
+          <b>4 OPEN</b><span>Slot Power Strike or Hold Fast or Alertness.</span>
+          <b>5 OPEN</b><span>The other two stay in your pocket.</span>
+          <b class="pos">6 POS</b><span>You land DR 2. They quit, drop a water bulb, or clear one tally. Your choice of theirs.</span>
+        </div>
+        <p>Power Strike slotted: that hit is DR 4. Hold Fast slotted: you land DR 2 and you are not shoved off the plank. Alertness slotted: if they hit you this exchange, it is 1 after the vest. Runner: Toughness 6, AV 0. Play this card again next turn if they are still up. At Toughness 0, you are down. Draw. Do not open the empty SV table.</p>
+      </article>
+
+      <article class="card">
+        <div class="num">07 · HAZARD</div>
+        <h3>Black water</h3>
+        <div class="tags">Hazard · Water · Shade · interrupts</div>
+        <p class="hook">A gulp of diesel. A hand that is a cable, a tool, a wrist. Cold up to the eye.</p>
+        <div class="block">
+          <b class="neg">1–3 NEG</b><span>It has you. −4 Toughness. You surface without the thing you wanted.</span>
+          <b>4 OPEN</b><span>Slot Low in the Water, or take the NEG.</span>
+          <b>5 OPEN</b><span>Unfilled.</span>
+          <b class="pos">6 POS</b><span>A rung. You come up with the thing, if there was a thing.</span>
+        </div>
+        <p>Low in the Water slotted: you surface with it. −5 Thirst. If you need a body for what held you, draw once. Keep it small.</p>
+      </article>
+
+      <article class="card">
+        <div class="num">08 · SKY</div>
+        <h3>Phase sky</h3>
+        <div class="tags">Weather · free · once per phase</div>
+        <p class="hook">The wing has three lights left. One of them is the sun. One of them is a sodium lamp. One of them is a klaxon you feel in the planks.</p>
+        <div class="block">
+          <b>1–2</b><span>Clear. Midday is SUN on the open cards: Search, Talk, Pilot.</span>
+          <b>3–4</b><span>Harsh. Same SUN rule. The hook is glare off the water, or black water after dusk. No extra penalty.</span>
+          <b>5–6</b><span>Squall. SUN is gone. NEG on Climb, Pilot, or Hazard also deals −2 Toughness.</span>
+        </div>
+        <p>This card is the trait, not a task. It does not spend a turn. Shade cards ignore SUN: Climb, Force, Hazard, and any fight under the slab.</p>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="slab" id="bill" style="margin-top:28px">
+    <div class="label">06 · END OF DEEP NIGHT</div>
+    <h2 class="amber-head">The bill</h2>
+    <p>Draft 0: Hunger −20, Thirst −20, Rest −50, once per Cycle. This button applies that bill to the numbers above, once.</p>
+    <p>Bands, also Draft 0, fixed amounts for the slice so the session is not choosing between a die and a flat. Crossing into Low Hunger or Low Thirst, 25 or under: Sanity −2 each. Crossing into Tired Rest, 35 or under: Sanity −3. Crossing into Exhausted, 10 or under: Sanity −6 more. A single drop can cross two rest bands. If that piles on, the pile is the finding.</p>
+    <button id="bill-btn" type="button">Apply the cycle bill</button>
+    <div id="bill-out">Bill not run.</div>
+    <div class="label" style="margin-top:16px">WRITE THESE BEFORE YOU STAND UP</div>
+    <ul>
+      <li>Every block you actually rolled, and which talent was sitting in it.</li>
+      <li>Any open slot that fell through, and whether Sun-blind was the reason.</li>
+      <li>Whether you ate, drank, napped, or paid four turns for a short rest.</li>
+      <li>The five numbers after the bill.</li>
+      <li>The card you wanted and did not have.</li>
+      <li>Whether DR 2 felt like a weapon, and whether Talk at skill 0 felt like a closed door.</li>
+    </ul>
+    <p class="fine">Stop at the end of the Cycle even if the meter is still under the slab. The slice is the day, not the victory. Half-sleeve in hand, bunk only, in the water, or walking off the wing: all four are a finished session.</p>
+  </section>
+</div>
+<script>
+(function () {
+  var out = document.getElementById("roll-out");
+  var ranks = ["A","2","3","4","5","6","7","8","9","10","J","Q","K"];
+  var suits = ["\u2665","\u2666","\u2663","\u2660"];
+  document.querySelectorAll("[data-die]").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var sides = parseInt(btn.getAttribute("data-die"), 10);
+      var n = 1 + Math.floor(Math.random() * sides);
+      out.textContent = "D" + sides + " " + n;
+    });
+  });
+  document.getElementById("draw-card").addEventListener("click", function () {
+    var rank = ranks[Math.floor(Math.random() * ranks.length)];
+    var suit = suits[Math.floor(Math.random() * suits.length)];
+    out.textContent = rank + suit;
+  });
+})();
+(function () {
+  var btn = document.getElementById("bill-btn");
+  var out = document.getElementById("bill-out");
+  function num(id) {
+    var el = document.getElementById(id);
+    var n = parseInt(el.value, 10);
+    return isNaN(n) ? 0 : n;
+  }
+  function set(id, n) {
+    document.getElementById(id).value = String(n);
+  }
+  btn.addEventListener("click", function () {
+    var hunger0 = num("hunger");
+    var thirst0 = num("thirst");
+    var rest0 = num("rest");
+    var sanity = num("sanity");
+    var hunger = hunger0 - 20;
+    var thirst = thirst0 - 20;
+    var rest = rest0 - 50;
+    var notes = [];
+    if (hunger0 > 25 && hunger <= 25) {
+      sanity -= 2;
+      notes.push("Hunger crossed into Low. Sanity −2.");
+    }
+    if (thirst0 > 25 && thirst <= 25) {
+      sanity -= 2;
+      notes.push("Thirst crossed into Low. Sanity −2.");
+    }
+    if (rest0 > 35 && rest <= 35) {
+      sanity -= 3;
+      notes.push("Rest crossed into Tired. Sanity −3.");
+    }
+    if (rest0 > 10 && rest <= 10) {
+      sanity -= 6;
+      notes.push("Rest crossed into Exhausted. Sanity −6.");
+    }
+    if (hunger <= 0 || thirst <= 0 || rest <= 0) {
+      notes.push("A stat hit 0. You are down. Draw once. Leave the empty SV table shut.");
+    }
+    set("hunger", hunger);
+    set("thirst", thirst);
+    set("rest", rest);
+    set("sanity", sanity);
+    var line = "Hunger " + hunger + ". Thirst " + thirst + ". Rest " + rest + ". Sanity " + sanity + ".";
+    if (notes.length) line += " " + notes.join(" ");
+    out.textContent = line;
+    btn.disabled = true;
+    btn.textContent = "Bill applied";
+  });
+})();
+</script>
+</body>
+</html>

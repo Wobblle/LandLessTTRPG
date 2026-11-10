@@ -1,0 +1,461 @@
+# LandLess Core Play Aids, Symbols, and Sheet Templates
+
+## Section 1: Universal Symbol Glossary &amp; Notation
+
+### 1.1 Local Board &amp; Map Cell Symbols
+
+* **D (Dock):** Mooring point, gangways, water access.
+* **B (Bar / Saloon):** Social interactions, rumors (AC-04), purchasing food/drink/stims.
+* **H (Beds / Habitation):** Berth, rental rooms; safe Full Rest (+100 Rest for 5 Scripts).
+* **M (Medical Clinic):** Trauma surgery, cybernetic surgery, Rad-Purge treatments.
+* **K (Mechanical Bay):** Crafting bench, drydock, repairs, upgrade installation.
+* **T (Trade Stall):** General merchant, surplus buyer, commodity exchange.
+* **W (Work / Labor):** Day-labor contracts (AC-03), dock shifts for Scripts.
+* **\+ (Hazard / Wreck):** Environmental danger, toxic leak, scavenger salvage (AC-01).
+* **· (Open Plank / Water):** Unclaimed decking, narrow catwalks, seawater transit.
+* **[X] (Closed / Security):** Locked bulkhead, biometric gate (AC-02), private compound.
+
+### 1.2 Combat &amp; Action Resolution Symbols
+
+* **Tk (Tick):** Sub-second combat timing unit (12 Ticks = 1 Action Phase).
+* **APh (Action Phase):** One combat round (12 Ticks).
+* **DR (Damage Rating):** Raw damage value inflicted by a successful hit.
+* **FR (Fire Rate / Speed):** Tick frequency of attack (e.g. FR 4 Tk acts at Ticks 4, 8, 12).
+* **AV (Armor Value):** Subtracted directly from incoming weapon DR.
+* **[Open]:** Action Card slot accepting positive Talents or triggering Negative Traits.
+* **TN (Target Number):** Difficulty for ad-hoc 2d6 + Skill checks (Routine: 6, Risky: 8, Extreme: 10).
+
+### 1.3 Playing Card Interpretations
+
+* **Hearts:** Berth (Dock/Bar/Beds) | Toll/Trade | YES, AND... (Advantage) | Social memory legacy
+* **Diamonds:** Market (Trade/Work/Tech) | Cargo demand | YES, BUT... (Cost/Delay) | Gear stash legacy
+* **Clubs:** Trouble (Wreck/Patrol/Mine) | Hull demand | NO, BUT... (Alternative) | +1 Skill legacy
+* **Spades:** Closed (Wall/Gate/Threat) | Hostile/Breakers | NO, AND... (Complication) | Ghost wreck legacy
+
+\-------------------------------------------------------------------------------- 
+
+## Section 2: The Three-Tier Mapping System
+
+### 2.1 The Map Hierarchy
+
+1. **The Globe (Macro):** Fixed 9-hex-face reference sheet showing closed empires, regional pockets, and open free water.
+2. **The Region (Meso):** 37-hex flower (4 hexes per outer side, 7 hexes across the middle). Alphanumeric offset coordinates (Columns 1-7, Rows A-G, Center at D4).
+3. **The Local Board (Micro):** Square grid (5x5 or 9x9) generated when docking at a POI hex.
+
+### 2.2 Region 37-Hex Alphanumeric Coordinate Grid
+
+* Columns 1 through 7 (Left to Right)
+* Rows A through G (Top to Bottom)
+* Center is D4.
+* Col 1: C1, D1, E1 (and border)
+* Col 2: B2, C2, D2, E2, F2
+* Col 3: A3, B3, C3, D3, E3, F3, G3
+* Col 4: A4, B4, C4, D4 (Center), E4, F4, G4
+* Col 5: A5, B5, C5, D5, E5, F5, G5
+* Col 6: B6, C6, D6, E6, F6
+* Col 7: C7, D7, E7
+
+### 2.3 Sailing &amp; Override Rules
+
+* **Pace:** 1 Watch (2 hours) = 1 hex movement.
+* **Sea Roll:** 2d6 once per Phase (every 3 Watches / 3 hexes in open water).
+* **3-Hex POIs:** Face cards claim current hex as center plus 2 adjacent hexes.
+* **Targeted Overrides:** Known secret coordinates (e.g., Globe 14, Region E6) override random card draws.
+
+### 2.4 Local Board Templates
+
+* **5x5 Small Board (Cards 5-10):** Deal cards row by row. Outer edge contains D (Docks); center contains B, T, W, H; hazard (+) placed on clubs/spades.
+* **9x9 Major City Board (Face Cards):** Multiple dock slips (D), central market plazas (T, K, M), residential habitations (H), dive bars (B), and back-alley hazards (+).
+
+\-------------------------------------------------------------------------------- 
+
+## Section 3: Character Sheet Template
+
+```
++=============================================================================+
+| [01] IDENTITY &amp; FACTION STANDING                                            |
+| Name: __________________________   Howling Form: __________________________ |
+| Origin Snippet: [             ]   Motivation (CC6): ______________________ |
+| Onyx Scripts: [               ]   Gloves (Intact):  [                    ] |
+| Factions: Onyx [ ]  Timber [ ]  Howling [ ]  Rhombus [ ]  Stillous [ ]      |
++=============================================================================+
+| [02] VITAL METERS &amp; TIME REGISTRY                                           |
+| CYCLE: [     ]   PHASE: [ ] Morn (1)  [ ] Mid (2)  [ ] Eve (3)  [ ] Night (4) |
+| WATCHES: [ ][ ][ ] (3/Phs)       ACTION TURNS (AT): [ ][ ][ ][ ] (4/Watch)  |
+| TOUGHNESS (HP):  [     /     ]    SANITY:          [     /  50 ]            |
+| HUNGER (-20/Cyc):[     / 100 ]    THIRST (-20/Cyc):[     / 100 ]            |
+| REST   (-50/Cyc):[     / 100 ]    RAD-BURN (0-6+): [     .   ]            |
+| BIO-ENERGY:      [     /  10 ]    BATTERY ENERGY:  [     /     ]            |
++=============================================================================+
+| [03] TRAIT ENGINE &amp; COMBAT SLOTS                                            |
+| POSITIVE FEATURES &amp; TALENTS       NEGATIVE TRAITS ([Open Slot Triggers])    |
+| 1. ____________________________   1. ______________________________________ |
+| 2. ____________________________      Trigger: _____________________________ |
+| 3. ____________________________   2. ______________________________________ |
+| TACTICAL MANEUVERS (Select 2):       Trigger: _____________________________ |
+| [ ] Focus       [ ] Cover             [ ] Heightened Alertness              |
+| [ ] Power Strike [ ] Distraction      [ ] Precise Aim                       |
+| [ ] Quick Step  [ ] Bleed Attack                                            |
++=============================================================================+
+| [04] 12-SKILL MATRIX (Rating 0 to 12)                                       |
+| COMBAT:       Melee [ ]    Ranged [ ]    Demolitions [ ]                    |
+| TECHNICAL:    Engineering [ ]  Hacking [ ]  Piloting [ ]                    |
+| SOCIAL/MIND:  Barter [ ]   Persuasion [ ]  Medicine [ ]                     |
+| SURVIVAL:     Athletics [ ] Stealth [ ]   Scavenging [ ]                    |
++=============================================================================+
+| [05] LOADOUT, ARMOR &amp; WEAPONS                                               |
+| Worn Bag: _____________________   Volume Capacity: [     /     Vol ]        |
+| Carry Weight: [      / 20.0 kg ]                                            |
+| Armor: Head [AV  ]  Torso [AV  ]  Arms [AV  ]  Legs [AV  ]  Total Torso AV:[]|
+| Weapon 1: __________________  DR: [  ]  FR: [  Tk]  Cap: [  ] Ammo: [     ] |
+| Code: D6([                                                              ]) |
+| Weapon 2: __________________  DR: [  ]  FR: [  Tk]  Cap: [  ] Ammo: [     ] |
+| Code: D6([                                                              ]) |
++=============================================================================+
+
+```
+
+\-------------------------------------------------------------------------------- 
+
+## Section 4: Personal Inventory &amp; Stash Ledger
+
+```
++=============================================================================+
+| PERSONAL INVENTORY (Body &amp; Backpack)                                        |
+| Item Description                   | Wt (kg) | Vol | Notes &amp; Effect Codes   |
+| 1.                                 |         |     |                        |
+| 2.                                 |         |     |                        |
+| 3.                                 |         |     |                        |
+| 4.                                 |         |     |                        |
+| 5.                                 |         |     |                        |
+| 6.                                 |         |     |                        |
+| 7.                                 |         |     |                        |
+| 8.                                 |         |     |                        |
+| TOTALS:                            |  /20 kg |/ Vol|                        |
++=============================================================================+
+| SHORE / DOCK CACHE (Stored at Base, Locker, or Compound)                    |
+| Location: ___________________________   Security Lock: _____________________|
+| 1. __________________________________   4. _________________________________|
+| 2. __________________________________   5. _________________________________|
+| 3. __________________________________   6. _________________________________|
++=============================================================================+
+
+```
+
+\-------------------------------------------------------------------------------- 
+
+## Section 5: Vessel &amp; Naval Combat Sheet
+
+```
++=============================================================================+
+| VESSEL SPECIFICATIONS                                                       |
+| Name: ________________________________  Class: [                         ]  |
+| Hull Type: [ ] Raft (10HP/0AV)   [ ] Skiff (20HP/1AV)                       |
+|            [ ] Cutter (30HP/2AV) [ ] Hauler (45HP/2AV)                      |
+| Condition: [ ] Failing (-25% HP) [ ] Working (Base) [ ] Sound (+5HP/+1 Mod) |
+| Quirk: ____________________________________________________________________ |
+| Hull Toughness: [     /     ]    Hull AV: [     ]   Speed: [    Hex/Watch ] |
+| Fuel Units:     [     / 10  ]    Cargo Hold: [      /    kg] [      /   Vol]|
++=============================================================================+
+| UPGRADES &amp; MOD SLOTS (Skiff: 1, Cutter: 2, Hauler: 3)                       |
+| Slot 1: ___________________________________________________________________ |
+| Slot 2: ___________________________________________________________________ |
+| Slot 3: ___________________________________________________________________ |
+| Deck Weapon: ___________________________ DR: [ 6 Hull ] Ammo: [  x Scrap ]  |
++=============================================================================+
+| NAVAL COMBAT ACTIONS (1 AT per round)                                       |
+| 1. BROADSIDE:   1d6 + Piloting (Hit 4+ -&gt; 6 Hull DR - Target AV)            |
+| 2. RAM / BOARD: Opposed 1d6 + Piloting -&gt; Transition to Deck Personal Combat|
+| 3. ESCAPE:      1d6 + Piloting + Speed vs. Enemy 4 + Speed                  |
++=============================================================================+
+
+```
+
+\-------------------------------------------------------------------------------- 
+
+## Section 6: In-World Terminal Display (Onyx Data Matrix PWA)
+
+```
+===============================================================================
+ONYX DATA MATRIX // RECON LOG FIRMWARE V4.12
+===============================================================================
+&gt;&gt; CYCLE: 001 | PHASE: 02 [MIDDAY] | SURVIVAL: STABLE
+&gt;&gt; HP: 17/17 | SANITY: 50/50 | HUNGER: 66/100 | THIRST: 66/100
+&gt;&gt; BATTERY: 05/05 | BIO-NRG: 15/15 | SCRIPTS: 0002 | GLOVES: 00
+-------------------------------------------------------------------------------
+[ ACTIVE MAP SECTOR ]
+  COORDINATE: D4 [SALT-VIPER MOORED // DUNDY NORTH PERIMETER]
+  HEADING: HEX E3 [DERELICT BULK FREIGHTER // 'BLACK RIBS']
+  RAD LEVEL: 0.00 | LOCAL WEATHER: OVERCAST / CALM
+-------------------------------------------------------------------------------
+[ SENSOR / ACTION BUFFER ]
+  1. WATCH TIMER ADVANCED (3 WATCHES PASSED)
+  2. SALVAGE LOGGED: 2x SCRAP METAL (+2.0 KG)
+  3. PENDING: AC-02 RESOLUTION AT SECURITY BULKHEAD
+===============================================================================
+```
+# LandLess RPG Rulebook Expansion &amp; Integration Guide
+
+This document compiles every rule addition, system expansion, correction, and mechanical clarification established across development discussions. Use this as the master context and specification document for rewriting the complete LandLess Tabletop RPG rulebook.
+
+\-------------------------------------------------------------------------------- 
+
+## Chapter 1: Character Creation Expansions (Step 5 through Step 8)
+
+### 1.1 Step 5: Howling Features &amp; Trait Engine
+
+Surviving characters begin with a budget of **10 Feature Points (FP)** to spend on biological traits (Animalic) or cybernetic modifications. Taking Negative Traits grants additional FP above the 10 FP base limit. Negative traits are mechanically tethered to the **[Open Slot Trigger]** system on Action Cards.
+
+#### Table CC3.A: Positive Animalic Features
+
+* **Gills &amp; Webbing (4 FP):** Breathe underwater indefinitely; +1 Athletics (Swimming); ignore water movement penalties.
+* **Raptor / Feline Claws (3 FP):** Natural Melee Weapon (DR 2, Sharp, 0 Wt/Vol). Grants +1 Athletics (Climbing).
+* **Bloodhound Olfaction (3 FP):** +1 Scavenging / Alertness checks. Automatically grants the *Heightened Alertness* Maneuver.
+* **Toughened Hide (4 FP):** Permanent +1 natural Armor Value (AV) (stacks with worn armor); +2 Max Toughness.
+* **Nocturnal Tapetum (2 FP):** Ignore darkness/low-light penalties during Deep Night Phases or in unlit wrecks.
+* **Scavenger's Gut (2 FP):** Max Hunger +10\. Safely consume raw or lightly irradiated food/water without HP or Sanity loss.
+* **Metabolic Dormancy (3 FP):** Bio-Energy Max +5\. Hunger and Thirst deplete by 15 per Cycle instead of 20.
+* **Chameleon Chromatophores (4 FP):** Spend 2 Bio-Energy to gain +2 Stealth for 1 Segment (Seg) or trigger *Cover* in combat.
+
+#### Table CC3.B: Positive Cybernetic Features
+
+*(Each feature increases Maximum Battery Energy, which powers special gear and actions)*.
+
+* **Rhombus Optic Suite (3 FP, +5 Battery Max):** +1 Ranged. Spend 1 Battery to slot *Precise Aim* into an open weapon block.
+* **Hydraulic Frame (4 FP, +5 Battery Max):** Carry Capacity +10 kg (to 30 kg). Spend 1 Battery for +2 DR on one melee hit.
+* **Sub-Dermal Plating (4 FP, +0 Battery Max):** Passive +1 AV to Torso; +3 Max Toughness. Heavy: Athletics -1 in water.
+* **Datajack &amp; Diagnostic (2 FP, +5 Battery Max):** +1 Hacking &amp; Engineering. Direct interface with pre-flood rigs and terminals.
+* **Internal Rad-Scrubber (3 FP, +5 Battery Max):** Spend 1 Battery per Phase to reduce local Radiation Level damage by 1.0.
+* **Micro-Welder Digit (2 FP, +5 Battery Max):** Built-in tool. Spend 1 Battery for field repairs without needing a tool kit.
+
+#### Table CC3.C: Negative Traits (Disadvantages &amp; Trait-Slot Triggers)
+
+* **Chronic Glitch (+3 FP):** *(Req. Cybernetics)*. **[Trigger]:** Actuator lockup; lose 2 Battery Energy or 3 Ticks.
+* **Fragile Frame (+4 FP):** \-3 Max Toughness (Base 12) and -4 kg Carry. **[Trigger]:** Take 1 Bruise damage (HP).
+* **Sunlight Sensitivity (+2 FP):** \-1 check penalty in clear Midday sun. **[Trigger]:** Dazzled; next action costs +1 Seg/Tick.
+* **Hyper-Metabolism (+3 FP):** Hunger/Thirst drain at 25/Cycle (vs. 20). **[Trigger]:** Immediately lose 3 Hunger or Thirst.
+* **Onyx Bounty / Wanted (+3 FP):** Start at -20 Rep with Onyx Empire. **[Trigger]:** Alert patrol / raise suspicion in civilized POIs.
+* **Loner / Feral Wiring (+2 FP):** \-1 Persuasion and Barter. **[Trigger]:** Misread social cue; NPC disposition worsens 1 step.
+* **Breaker Trauma (+3 FP):** \-10 Max Sanity (Base 40). **[Trigger]:** Phantom neural feedback; lose 2 Sanity immediately.
+
+### 1.2 Step 6: Standardized 12-Skill Matrix
+
+Skills are rated on a **0 to 12** scale (0 = Basic, 12 = Master):
+
+* **Combat:** Melee, Ranged, Demolitions
+* **Technical:** Engineering, Hacking, Piloting
+* **Social &amp; Mind:** Barter, Persuasion, Medicine
+* **Survival &amp; Covert:** Athletics, Stealth, Scavenging *(covers foraging, searching, and alertness)*
+
+### 1.3 Step 7: Starting Tactical Maneuvers (Table CC4)
+
+Characters start with **two** Tactical Maneuvers. Known list includes:
+
+* **Quick Step:** Reposition 1 grid square immediately without spending Ticks, OR reduce incoming melee DR by 1 this Action Phase.
+* **Bleed Attack:** *(Req. Sharp weapon or Claws)*. Successful attack inflicts 1 ignore-AV damage at start of next 2 Action Phases.
+* **Focus:** Add +1 to your next attack or technical roll.
+* **Cover:** Gain +1 AV while behind solid terrain.
+* **Heightened Alertness:** Act 1 Tick sooner on first combat turn, or delay an enemy by 1 Tick.
+* **Power Strike:** Spend 2 extra Ticks to deal +2 DR on a melee strike.
+* **Distraction:** Force an opponent to retarget or lose their next 2 Ticks.
+* **Precise Aim:** Eliminate hit penalties on long-range attacks.
+
+### 1.4 Step 8: Starting Closet (Table CC5)
+
+Budget: **50 Closet Points (CP)**. Base weight allowance: **20 kg**. Must purchase at least one Bag to establish **Volume (Vol) Capacity**. Unspent CP converts 1:1 into **Onyx Scripts**.
+
+* **Bags:**
+  * *Salt-Stained Satchel:* 5 CP | 0.5 kg | +8 Vol
+  * *Salvager's Rucksack:* 12 CP | 1.5 kg | +16 Vol
+  * *Rigged Cargo Frame:* 20 CP | 3.0 kg | +25 Vol (-1 Stealth)
+* **Weapons:**
+  * *Rust-Shank / Shiv:* 5 CP | 0.5 kg | 1 Vol | Melee, Sharp, DR 2, Spd 3 Tk. `D6([Hit_3][Open_5][Bleed_6])`
+  * *Salvaged Pipe-Mace:* 10 CP | 2.0 kg | 2 Vol | Melee, Blunt, DR 4, Spd 5 Tk. `D6([Miss_1][Hit_4][Open_5][Stun_6])`
+  * *Scrap-Lock Pistol:* 12 CP | 1.5 kg | 1 Vol | Ranged, DR 3, FR 4 Tk, Cap 6\. `D6([Jam_1][Hit_4][Open_5][Crit_6])`
+  * *Dockyard Harpoon Gun:* 18 CP | 3.5 kg | 3 Vol | Ranged, Sharp, DR 5, FR 8 Tk, Cap 1\. `D6([Miss_2][Hit_4][Open_5][Pin_6])`
+* **Ammo &amp; Power:**
+  * *Slug Pack (x12):* 4 CP | 0.5 kg | 1 Vol
+  * *Harpoon Bolts (x4):* 4 CP | 1.0 kg | 1 Vol (recover on 4+ on 1d6 post-combat)
+  * *Charge Cell (Small):* 6 CP | 0.5 kg | 1 Vol (+5 Battery Energy)
+* **Armor:**
+  * *Tarp &amp; Leather Vest:* 8 CP | 2.0 kg | 2 Vol | Torso AV 1
+  * *Welder's Goggles/Helm:* 6 CP | 1.0 kg | 1 Vol | Head AV 1
+  * *Scrap-Plate Greaves:* 8 CP | 2.5 kg | 2 Vol | Legs AV 1
+* **Survival &amp; Medical:**
+  * *Ration Brick (x1):* 3 CP | 0.5 kg | 1 Vol (+25 Hunger, +2 Bio-Energy)
+  * *Clean Water Pouch (x1):* 3 CP | 1.0 kg | 1 Vol (+25 Thirst, +2 Bio-Energy)
+  * *Basic Med-Patch:* 6 CP | 0.2 kg | 1 Vol (Restores +4 Toughness over 1 Action Turn)
+  * *Rad-Purge Ampoule:* 8 CP | 0.2 kg | 1 Vol (Clears minor rad-burn or restores 2 rad-lost HP)
+* **Tools &amp; Intel:**
+  * *Rusted Multi-Tool:* 8 CP | 0.5 kg | 1 Vol (Required for Engineering/Repairs)
+  * *Heavy Prybar:* 5 CP | 1.5 kg | 2 Vol (+1 to force doors/crates, acts as DR 2 Blunt weapon)
+  * *Local Sector Rumor:* 5 CP | 0.0 kg | 0 Vol (Draw 1 bonus POI on first Region map)
+
+\-------------------------------------------------------------------------------- 
+
+## Chapter 2: Core Resolution, Health &amp; Progression
+
+### 2.1 Action Card Effect Block Resolution &amp; Negative Trait Binding
+
+* When executing an Action Card, roll 1d6 against its Effect Block Code.
+* **Open Slots:** Pre-assigning a matching Talent/Maneuver activates that custom benefit on that number.
+* **Negative Trait Binding:** If an `[open]` slot is left **empty/unslotted**, and the player possesses an un-upgraded Negative Trait from CC3.C, rolling that number immediately triggers the negative trait penalty instead of a standard failure.
+
+### 2.2 Toughness, Shock Roll &amp; Lethality
+
+1. **Net Damage (X):** `X = Weapon Damage Rating (DR) - Target Armor Value (AV)`.
+2. **Lethality Check:**
+  * If `X &gt;= Current Toughness`, target drops to 0 HP immediately.
+  * If `X &lt; Current Toughness`, roll **1d(X)** (die size matching net damage: d2, d3, d4, d6, d8, d10, d12) and deduct the result from Toughness.
+3. **Ally Pickup Rule:**
+  * At 0 Toughness while solo: roll immediately on **Table SV2 (Death &amp; Demise)**.
+  * At 0 Toughness with an ally/companion present: roll 1d6\. On a **6**, companion stabilizes you with +1d3 HP (usable once per encounter).
+
+### 2.3 Skill Progression &amp; Skill Prestige
+
+* **Skill Tally:** Rolling a natural 6 or rolling a critical effect on a skill-linked action marks 1 tally next to that skill.
+* **Leveling Up:** When tallies equal `Current Skill Rating + 1`, clear tallies and increase the skill by +1 during the next Full Rest (Phase).
+* **Skill Prestige:** Reaching **Rank 3** in any skill permits the player to "Prestige" one Negative Trait. It becomes mastered: empty `[open]` slots no longer trigger the disadvantage.
+
+### 2.4 Ad-Hoc Skill Checks
+
+When an action has no dedicated Action Card, roll **2d6 + Skill Rating** against:
+
+* **TN 6 (Routine / Strained):** Standard task under mild pressure.
+* **TN 8 (Difficult / Risky):** Complicated task; failure costs a Segment or triggers a hazard.
+* **TN 10 (Extreme / Treacherous):** Near-impossible task; failure deals direct damage or triggers alerts.
+
+### 2.5 Tactical Movement &amp; Rest Mechanics
+
+* **Tactical Movement:** Moving 1 grid square costs **2 Ticks**. Sprinting (4 squares) costs **6 consecutive Ticks**. *Quick Step* moves 1 square for **0 Ticks**.
+* **Short Rest (1 Watch / 4 ATs):** Recovers **+25 Rest** and **+2 Bio-Energy** (no HP recovery).
+* **Full Rest (1 Phase / 3 Watches in Safe Berth/Bed):** Recovers **+100 Rest**, resets **Bio-Energy to Maximum**, and restores **+2 Toughness (HP)** if Hunger and Thirst are &gt; 25.
+* **Post-Combat Recovery:** Spend 1 AT post-fight: roll 1d6\. On 3+, recover 1d6 Slugs or half of fired harpoons, plus 1x Scrap Metal and enemy pocket scripts.
+
+\-------------------------------------------------------------------------------- 
+
+## Chapter 3: Starter Action Cards (AC-01 through AC-04)
+
+* **AC-01: Scavenge Wreckage / Hulk (1 Watch / 4 ATs)**
+  * Code: `D6([1-2: Rust Cut (1 HP dmg, 1x Scrap Metal)][3: Open][4: Open][5: Salvage Cache (2x Scrap, 1x Water or Ration)][6: High Yield (1x Adv. Electronics, 1x Cell, 1d10 Scripts)])`
+* **AC-02: Force / Bypass Sealed Hatch (1 AT)**
+  * Code: `D6([1: Jammed / Alarm (+1 Threat)][2-3: Stalled (costs +1 AT)][4: Open][5: Open][6: Clean Breach (Access compartment without noise)])`
+* **AC-03: Barter / Negotiate Trade (1 Segment / 15 min)**
+  * Code: `D6([1: Offended Vendor (Prices +25% for 1 Cycle)][2-3: Stiff Price (Standard market rate)][4: Open][5: Open][6: Favor / Cut Rate (15% discount or gain local rumor)])`
+* **AC-04: Dockyard Day Labor / Brawn (1 Watch)**
+  * Code: `D6([1: Exhaustion (-15 Rest, earn 2 Scripts)][2-3: Grunt Work (Earn 4 Scripts)][4: Open][5: Open][6: Foreman's Bonus (Earn 8 Scripts + 1 Ration Brick)])`
+
+\-------------------------------------------------------------------------------- 
+
+## Chapter 4: Economy, Facilities &amp; Crafting Engine
+
+### 4.1 Currency &amp; Baseline Pricing
+
+* Primary Currency: **Onyx Scripts**.
+* Premium Power Currency: **Stillous Gloves** (1 Glove = 100 Scripts).
+* **Facility Rates (Local Boards):**
+  * Docking (D): 1-3 Scripts / Cycle
+  * Berth / Bed (H): 2 Scripts / Phase (Safe Rest)
+  * Dive Bar (B): 1 Script (Meal/Rumor)
+  * Medical Clinic (M): 5 Scripts (Restore 4 HP) | 10 Scripts (Cure minor Rad-Burn / Poison)
+  * Mechanical Yard (K): 5 Scripts (Repair 5 Ship Hull HP) | 3 Scripts (Rent Crafting Bench for 1 Watch)
+
+### 4.2 The Crafting Engine (Three Gates)
+
+Crafting requires: (1) Skill Gate, (2) Materials, and (3) Crafting Bench/Station.
+
+* **Basic Slugs (x6):** Engineering 1 | 1x Scrap Metal, 1x Chem/Powder | 1 AT
+* **Harpoon Bolt (x1):** Engineering 0 | 1x Scrap Metal | 1 AT
+* **Improvised Med-Patch:** Medicine 1 | 1x Clean Water, 1x Chem/Bio-Fiber | 1 AT (Heals 4 HP)
+* **Reconditioned Battery Cell:** Engineering 2 | 1x Scrap Electronics, 1x Acid/Chem | 2 ATs (+5 Battery)
+* **Scrap Armor Reinforcement:** Engineering 1 | 2x Scrap Metal, 1x Leather/Tarp | 1 Watch (+1 AV to chosen location)
+
+\-------------------------------------------------------------------------------- 
+
+## Chapter 5: Survival Event Tables &amp; Solo Oracle
+
+### 5.1 Card-Deck Oracle Resolver
+
+Ask a Yes/No question and draw 1 playing card:
+
+* **Hearts (♥):** Yes, and... (Exceptional positive benefit)
+* **Diamonds (♦):** Yes, but... (Success with minor complication or resource cost)
+* **Clubs (♣):** No, but... (Failure, but a silver lining or alternative opens)
+* **Spades (♠):** No, and... (Dire failure, hazard escalation, or immediate ambush)
+* **Rank Modifiers:** Ace / Face Card = Extreme Twist or unexpected faction intervention.
+
+### 5.2 Environmental &amp; Survival Tables
+
+* **Table SV1: Unconscious Events (Draw 1 Card upon collapsing):**
+  * *Hearts:* Rescued by a passing drifter or medic; wake in a berth with -10 Scripts.
+  * *Diamonds:* Robbed of loose scripts and bag contents, but alive with 1 HP.
+  * *Clubs:* Drifting adrift in bilge water; contract minor water-sickness (-10 Max Rest).
+  * *Spades:* Captured by scavengers or Breaker thralls; must stage an immediate escape.
+* **Table SV2: Death &amp; Legacy (Demise):**
+  * Dying leaves a wreckage marker at current coordinates. Next character drawing a Face card in this region recovers the predecessor's primary weapon and journal.
+* **Table SV4: Rad-Burn Table (When Rad Level reaches 5.0+):**
+  * *5.0 - 9.0:* Nausea (-1 to all physical checks, Max Bio-Energy reduced by 3).
+  * *10.0+:* Cellular collapse (Lose 1 Toughness per Watch until treated with Rad-Purge or clinic).
+* **Table SV5: Weather Hazard Matrix:**
+  * *Clear:* Normal travel.
+  * *Toxic Drizzle:* \-1 AV to exposed leather/tarp over 1 Cycle; Thirst drain +5.
+  * *Gale Squall:* Ship travel speed halved; 1d6 test to avoid taking 1 Ship Hull Strain.
+  * *Bio-Phosphor Fog:* Navigation TN +2; sight range reduced to 2 squares in combat.
+
+\-------------------------------------------------------------------------------- 
+
+## Chapter 6: Vessel Operations &amp; Naval Skirmishes
+
+### 6.1 Vessel Archetypes &amp; Base Stats
+
+* **Raft:** Hull HP: 10 | Hull AV: 0 | Speed: 1 hex / 2 Watches | Cargo: 50 kg / 20 Vol
+* **Skiff:** Hull HP: 20 | Hull AV: 1 | Speed: 1 hex / 1 Watch | Cargo: 150 kg / 60 Vol
+* **Cutter:** Hull HP: 35 | Hull AV: 2 | Speed: 2 hexes / 1 Watch | Cargo: 300 kg / 120 Vol
+* **Hauler:** Hull HP: 60 | Hull AV: 3 | Speed: 1 hex / 1 Watch | Cargo: 1000 kg / 500 Vol
+
+### 6.2 The Naval Engagement Sequence (2d6 Sea Roll = 2)
+
+When intercepted by a hostile vessel, choose one of three maneuvers:
+
+1. **Full Burn (Escape):** Roll Piloting check (TN 7 for Skiff, TN 6 for Cutter, TN 9 for Hauler). Success breaks away. Failure takes 1 Broadside volley and forces personal combat.
+2. **Broadside Exchange:** Both vessels roll deck weapons. Deal `Weapon DR - Target Hull AV` to Ship Hull HP. If Hull drops to 0, vessel begins taking water and founders in 3 Watches.
+3. **Ram &amp; Board:** Close distance to 0 Ticks. Skirmish transitions immediately to personal tactical combat across deck planks.
+
+\-------------------------------------------------------------------------------- 
+
+## Chapter 7: Threat Catalog &amp; Bestiary
+
+### 7.1 Tier 1: Vermin &amp; Scrappers
+
+* **Barnacle Rat Swarm:** Toughness 8, AV 1\. Spd: 3 Tk. Gnawing Jaws (DR 1, Blunt/Sharp, `D6([Miss_1-2][Hit_3-4][Frenzy_5-6])`). Frenzy ruins 1 ration/water if hit. Scatters if hit by DR 4+.
+* **Skiff Scrapper:** Toughness 12, AV 0\. Spd: 5 Tk. Rusted Pipe/Machete (DR 3, Melee, `D6([Miss_1-2][Hit_3-5][Open_6])`). 6 grapples (+2 Ticks to player's next action). Morale check under 5 HP.
+* **Breaker Host:** Toughness 14, AV 0\. Spd: 4 Tk. Corrupted Shunt (DR 3, Melee, `D6([Miss_1][Hit_2-4][Neural_Screech_5][Harvest_Grip_6])`). Screech causes -2 Sanity. Harvest Grip deals 2 AV-ignoring damage and pins target. Ignores Shock Roll; fights until 0 HP.
+
+### 7.2 Tier 2: Faction Troops &amp; Autonomous Hazards
+
+* **Port Dundy Enforcer:** Toughness 16, AV 2\. Spd: 4 Tk. Heavy Scrap-Pistol (DR 4, Ranged, Cap 6, `D6([Miss_1-2][Hit_3-4][Suppress_5][Crit_6])`). Suppress pins target. Takes Cover (+1 AV) near crates.
+* **Mirlyn Razor-Raider:** Toughness 18, AV 1\. Spd: 3 Tk. Monofilament Talons (DR 4, Sharp, `D6([Miss_1][Hit_2-4][Bleed_5][Rake_6])`). Bleed deals 1 damage/APh for 2 phases. Rake shreds 1 worn AV permanently. Swoop moves 3 squares for 0 Ticks.
+* **Incinerator Swarm (Aquatic Mine):** Toughness 10, AV 3\. Spd: 6 Tk. Moves 2 squares toward metallic target. On contact, clamps and detonates next Tick for DR 10 Area Damage (2 Ship Hull Strain). Defused via Engineering/Demolitions TN 8.
+
+### 7.3 Tier 3: Apex Horrors &amp; War Engines
+
+* **Breaker Stalker (Alpha Vector):** Toughness 28, AV 2\. Spd: 4 Tk. Scythe-Limbs (DR 6, `D6([Miss_1][Hit_2-3][Neuro-Shock_4][Glove_Drain_5][Bio-Assimilation_6])`). Neuro-shock loses 4 Sanity + 3-Tick stun; Glove Drain burns 5 Battery; Bio-assimilation inflicts Breaker Trauma negative trait. Radiates electronic optic jamming.
+* **Onyx Wraithlion (War Mech):** Toughness 35, AV 3\. Spd: 3 Tk. Pounce (moves 4 sq, prone). Reciprocating Saw Jaws (DR 7, ignores 2 AV, `D6([Deflect_1][Hit_2-3][Armor_Bite_4-5][Decapitate_6])`). Decapitate deals 10 Net Damage + Shock roll. Called shot to cooling vents (TN 9) bypasses AV.
+
+\-------------------------------------------------------------------------------- 
+
+## Chapter 8: The Alphanumeric Hex-Mapping Overhaul
+
+### 8.1 The Three Scales
+
+1. **Globe (Macro):** Fixed 9-hex-face Terran globe reference.
+2. **Region (Meso):** 37-Hex Flower (4 hexes per side, 7 hexes across center). Alphanumeric coordinates: Columns 1 to 7, Rows A to G. Center departure hub is **D4**.
+3. **Local Board (Micro):** 5x5 (standard 2-hex POIs) or 9x9 (major 3-hex floating cities) square grid unfolded upon docking.
+
+### 8.2 Regional Exploration &amp; Override Rules
+
+* Draw 4 playing cards per region to populate POIs; remaining hexes are open water.
+* **Suit = Type:** Hearts (Berth), Diamonds (Market), Clubs (Trouble/Wreck), Spades (Closed/Hostile).
+* **Rank = Size:** Ace-4 (1 hex, no expansion), 5-10 (2 hexes, 5x5 board), Face Card (3 hexes, 9x9 city).
+* **3-Hex POI Placement:** Center hex placed where drawn; claims 2 adjacent empty hexes.
+* **Targeted Override Rule:** When sailing into coordinates matching a known secret or cipher location, do not draw randomly; the known secret POI automatically overrides or attaches as a hidden sub-level.

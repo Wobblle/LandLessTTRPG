@@ -1,0 +1,103 @@
+{
+  "id": "dock-slice",
+  "title": "Dock Slice",
+  "status": "house",
+  "place": "Port Dundy, import wing",
+  "when": "Back half of Cycle 1. Start at Midday. Bolts slip at the end of Deep Night.",
+  "doesNotOverwrite": "Landless lore Drafts/Copy of 2nd Draft of LandLess Solitaire Survival RPG.pdf",
+  "needs": ["d6", "52-card deck, jokers removed", "pencil"],
+  "actionTurns": 6,
+  "cycleBill": { "hunger": -20, "thirst": -20, "rest": -50, "source": "draft-0" },
+  "damage": {
+    "rule": "A landed hit subtracts DR from Toughness. AV reduces the DR first, to a minimum of 0. No second damage die.",
+    "status": "house",
+    "reason": "Draft 0 names Toughness as hit points and also sketches a separate damage die. This slice uses one rule."
+  },
+  "oracle": {
+    "status": "house",
+    "die": "one card from a 52-card deck",
+    "suits": {
+      "hearts": "YES",
+      "diamonds": "YES, BUT",
+      "clubs": "NO, BUT",
+      "spades": "NO"
+    },
+    "bands": ["A-4 small", "5-10 turn", "J-K the dock answers"]
+  },
+  "survivor": {
+    "name": "Pell",
+    "people": "Howling",
+    "origin": {
+      "card": "Clubs Ace-4",
+      "title": "Cast Out from Your Skiff-Pack",
+      "source": "draft-0 CC1",
+      "effects": ["Howling Society -10", "Survival +1"]
+    },
+    "hook": "Otter-low, long in the hands, hide the color of wet rope. Ears fold flat in a bad wind. The sun works on their eyes like a thumb.",
+    "statsAtMidday": {
+      "toughness": 15,
+      "hunger": 45,
+      "thirst": 40,
+      "rest": 55,
+      "sanity": 50,
+      "battery": 2,
+      "batteryMax": 4,
+      "carryKg": 10.3,
+      "carryMaxKg": 20
+    },
+    "features": [
+      { "name": "Enhanced Hearing", "fp": 3, "kind": "animal", "grants": "Heightened Alertness" },
+      { "name": "Climbing Claws", "fp": 3, "kind": "animal", "grants": "Hold Fast" },
+      { "name": "Aquatic Adaptation", "fp": 4, "kind": "animal", "grants": "Low in the Water" },
+      { "name": "Reinforced Ankle", "fp": 2, "kind": "cyber", "grants": "Battery max 4. Spend 1 to ignore Sun-blind on the current card." },
+      { "name": "Sun-blind", "fp": -2, "kind": "negative", "grants": "On a SUN card, an unfilled open slot resolves as that card's NEG." }
+    ],
+    "fp": { "budget": 10, "fromNegative": 2, "spent": 12 },
+    "skills": {
+      "Survival": 3,
+      "Perception": 3,
+      "Scavenge": 2,
+      "Pilot": 2,
+      "Melee": 2,
+      "Talk": 0,
+      "Engineering": 0
+    },
+    "maneuvers": ["Heightened Alertness", "Power Strike"],
+    "standing": {
+      "Howling Society": -10,
+      "Onyx Empire": -5,
+      "Timberites": 0,
+      "Rhombus": 0,
+      "Stillous": 0,
+      "Mirlyns": "hostile, not on this wing",
+      "Breakers": "hostile, not on this wing"
+    },
+    "closet": [
+      { "item": "Satchel", "cp": 8, "kg": 1.0, "note": "8 slots" },
+      { "item": "Hooked knife", "cp": 10, "kg": 0.4, "note": "DR 2, sharp, worn" },
+      { "item": "Patch vest", "cp": 8, "kg": 4.0, "note": "AV 1 torso, worn" },
+      { "item": "Rations", "cp": 4, "kg": 0.5, "note": "2. Each restores 20 Hunger" },
+      { "item": "Water bulbs", "cp": 6, "kg": 1.5, "note": "3. Each restores 20 Thirst" },
+      { "item": "Line, 15 m", "cp": 4, "kg": 0.8, "note": "" },
+      { "item": "Grease and rag", "cp": 2, "kg": 0.2, "note": "" },
+      { "item": "Pry bar", "cp": 6, "kg": 1.5, "note": "Lets Hold Fast slot on FORCE" },
+      { "item": "Dim lamp", "cp": 2, "kg": 0.4, "note": "" }
+    ],
+    "cpSpent": 50
+  },
+  "job": {
+    "boss": "Hest",
+    "bossNote": "Timberite. Counts a coin twice. Speaks once.",
+    "want": "A sealed meter in a fouled crate under the import slab.",
+    "pay": "A half-sleeve. House coin: bunk and a week.",
+    "clock": "6 Action Turns. Cutter slips its bolts at the end of Deep Night."
+  },
+  "enemy": {
+    "name": "Dock runner",
+    "toughness": 6,
+    "dr": 3,
+    "av": 0,
+    "arrivesWhen": "Onyx tally reaches 2"
+  },
+  "cards": ["01-search", "02-climb", "03-force", "04-talk", "05-pilot", "06-knife", "07-hazard", "08-sky"]
+}
