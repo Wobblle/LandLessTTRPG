@@ -1,0 +1,74 @@
+LANDLESS - CHARACTER SHEET (Rivals quick build)
+================================================
+
+[01] IDENTITY & ORIGIN
+------------------------------------------------
+Name: ______________________   Player: __________
+One sentence - what you are, why you want off
+the water: _____________________________________
+________________________________________________
+Origin card: ______   Howling concept: __________
+Motivation (roll 2d6): ______   Escape card
+(suit only): ______
+Money: Scripts ______   Gloves ______ (1 Glove = 100 Scripts)
+
+[02] VITAL METERS & CYCLE TRACKER
+------------------------------------------------
+Cycle: [ ]   Phase: [ ] morn  [ ] mid  [ ] eve  [ ] night
+Watches: [ ] [ ] [ ]   Action Turns (4 per watch): [ ] [ ] [ ] [ ]
+
+Toughness (health):       [ 15 / 15 ]
+Hunger  (-20 per cycle):  [ 70 / 100 ]
+Thirst  (-20 per cycle):  [ 70 / 100 ]
+Rest    (-50 per cycle):  [ 80 / 100 ]
+Sanity:                   [ 50 / 50 ]
+Bio-Energy:               [ 10 / 10 ]
+Battery:                  [ 0 / 0 ]
+Radiation (burn track):   [ 0 ]
+
+[03] TRAIT ENGINE (slots for action cards)
+------------------------------------------------
+Feature Points: 6 to spend
+Raptor/Feline Claws 3 - Gills and Webbing 4 -
+Bloodhound Olfaction 3 - Toughened Hide 4 -
+Nocturnal Tapetum (night eyes) 2
+Sunlight Sensitivity and Loner give 2 back.
+Bloodhound also teaches Heightened Alertness.
+Features: ______________________________________
+________________________________________________
+Maneuvers known: _______________________________
+Action card slots:
+  [ ] AC-__  ________________________________
+  [ ] AC-__  ________________________________
+  [ ] AC-__  ________________________________
+  [ ] AC-__  ________________________________
+
+[04] SKILLS
+------------------------------------------------
+Piloting:    [ 1 ]
+Scavenging:  [ 1 ]
+___________: [ 1 ]  (one other skill at 1)
+___________: [   ]
+___________: [   ]
+
+[05] BODY
+------------------------------------------------
+Wounds: ________________________________________
+________________________________________________
+Radiation burns: _______________________________
+Cybernetics: ___________________________________
+________________________________________________
+
+[06] PACK
+------------------------------------------------
+Satchel, rust-shank, tarp vest
+Rations: [ ] [ ]    Waters: [ ] [ ]
+Scripts: 15
+Other gear: ____________________________________
+________________________________________________
+Scrap: ______   Fuel: ______   Charge cells: ______
+
+------------------------------------------------
+Quick build values shown. Full game: Rest starts
+at 100, 10 Feature Points, 50 Closet Points of
+gear (chapter 2).

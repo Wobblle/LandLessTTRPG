@@ -1,0 +1,59 @@
+LANDLESS - BOAT SHEET (Rivals quick build)
+================================================
+
+[01] BOAT
+------------------------------------------------
+Boat name: ___________________   Owner: __________
+Hull: [ ] Raft  [ ] Skiff  [ ] Cutter  [ ] Hauler
+Boat Points: 8 to spend
+
+Raft 2 pts - 10 hull, 0 armour, 1 hex per 2 watches,
+  hold 50 kg / 20 vol, 0 mod slots, no tank (no engine)
+Skiff 4 pts - 20 hull, 1 armour, 1 hex per watch,
+  hold 150 kg / 60 vol, 1 mod slot, tank 10
+Cutter 7 pts - 35 hull, 2 armour, 2 hexes per watch,
+  hold 300 kg / 120 vol, 2 mod slots, tank 10
+Hauler 8 pts - 60 hull, 3 armour, 1 hex per watch,
+  hold 1000 kg / 500 vol, 3 mod slots, tank 10
+5 fuel = 1 pt - +5 hull = 1 pt - a mod = 2 pts
+Fuel: 2 Scripts per unit at any dock. A powered hull
+  spends 1 fuel per phase underway. At 0 fuel it
+  moves as a raft until it refuels.
+
+[02] HULL, ARMOUR & FUEL
+------------------------------------------------
+Hull (health):       [ ___ / ___ ]
+Armour Value:        [ ___ ]
+Speed:               [ ___ hexes per watch ]
+Fuel tank:           [ ___ / 10 units ]
+Fuel aboard:         [ ___ units ]
+Hold:                [ ___ kg / ___ vol ]
+Mod slots:           [ ] [ ] [ ]
+
+Quirk (draw one card after building):
+  [ ] Hearts - extra bunks (sleep aboard)
+  [ ] Diamonds - a larger hold (add half the
+        listed hold again)
+  [ ] Clubs - a leak (lose 1 hull at the end
+        of every cycle)
+  [ ] Spades - a deck gun you cannot fire yet
+        (write the slot down)
+
+[03] HOLD & CARGO
+------------------------------------------------
+Scrap: ______   Charge cells: ______
+Cargo: _________________________________________
+________________________________________________
+________________________________________________
+
+[04] DAMAGE & REPAIRS
+------------------------------------------------
+Hull damage: ___________________________________
+Repairs: _______________________________________
+Notes: _________________________________________
+________________________________________________
+
+------------------------------------------------
+Quick build values shown. A phase has 3 watches.
+Skiff and Hauler cover 3 hexes per clear phase,
+Cutter covers 6, Raft covers 1.
